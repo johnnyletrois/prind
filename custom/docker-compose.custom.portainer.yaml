@@ -26,9 +26,9 @@ services:
     privileged: true
     logging:
       driver: none
-    depends_on:
-      init:
-        condition: service_completed_successfully
+    #depends_on:
+    #  init:
+    #    condition: service_completed_successfully
     command: >
       -I printer_data/run/klipper.tty
       -a printer_data/run/klipper.sock
@@ -50,8 +50,8 @@ services:
     logging:
       driver: none
     depends_on:
-      init:
-        condition: service_completed_successfully
+      #init:
+      #  condition: service_completed_successfully
       klipper:
         condition: service_started
     volumes:
@@ -103,13 +103,13 @@ services:
       traefik.http.routers.fluidd.rule: PathPrefix(`/`)
       traefik.http.routers.fluidd.entrypoints: web
 
-  init:
-    image: busybox:latest
-    command: chown -R 1000:1000 /prind/config
-    volumes:
-      - /data/prind:/prind
-    labels:
-      org.prind.service: init
+  #init:
+  #  image: busybox:latest
+  #  command: chown -R 1000:1000 /prind/config
+  #  volumes:
+  #    - /data/prind:/prind
+  #  labels:
+  #    org.prind.service: init
 
   traefik:
     image: traefik:v2.5
