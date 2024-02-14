@@ -105,13 +105,13 @@ services:
       traefik.http.routers.fluidd.rule: PathPrefix(`/`)
       traefik.http.routers.fluidd.entrypoints: web
 
-  #init:
-  #  image: busybox:latest
-  #  command: chown -R 1000:1000 /prind/config
-  #  volumes:
-  #    - /data/prind:/prind
-  #  labels:
-  #    org.prind.service: init
+  init:
+    image: busybox:latest
+    command: chown -R 1000:1000 /prind/config
+    volumes:
+      - /data/prind:/prind
+    labels:
+      org.prind.service: init
 
   traefik:
     image: traefik:v2.5
